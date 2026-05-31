@@ -22,3 +22,5 @@ class StyleConfig:
     transition: str  # "fade" | "wipe_left" | "wipe_right"
     image_prompt_suffix: str  # appended to AI image generation prompt
     font_style: str = "sans"  # "sans" | "chalk" | "marker" | "mono"
+    stroke_thickness: int = 0  # 0 means infer from drawing_effect
+    cursor_color: str = ""  # empty means use accent_color

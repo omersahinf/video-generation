@@ -4,12 +4,11 @@ import uuid
 from pathlib import Path
 
 from config import TEMP_DIR, OUTPUT_DIR, VIDEO_FPS
-from script_gen import generate_script, VideoScript
+from script_gen import generate_script
 from tts import text_to_speech
-from image_gen import generate_illustration_phases
+from image_gen import generate_illustration
 from animator import make_scene_clip
 from styles.registry import get_style
-from styles.base import StyleConfig
 from composer import compose_video
 
 
@@ -45,36 +44,38 @@ def run(
     for scene in script.scenes:
         log(f"\n  Scene {scene.id}/{len(script.scenes)}: {scene.key_text or scene.visual_description[:40]}")
 
-        # TTS
-        audio_path = tmp / f"scene_{scene.id}_audio.mp3"
-        log(f"    → TTS...")
-        text_to_speech(scene.narration, audio_path)
+        try:
+            audio_path = tmp / f"scene_{scene.id}_audio.mp3"
+            log(f"    → TTS...")
+            scene.duration = text_to_speech(scene.narration, audio_path)
+            log(f"      ✓ audio duration: {scene.duration:.2f}s")
 
-        # 3-phase progressive illustration
-        log(f"    → Illustrations (3 phases)...")
-        phase_paths = generate_illustration_phases(
-            scene.visual_description, style, tmp, scene.id,
-            key_text=scene.key_text, narration=scene.narration,
-        )
-        log(f"      ✓ {len(phase_paths)} phases generated")
+            log(f"    → Illustration...")
+            image_path = tmp / f"scene_{scene.id}.png"
+            generate_illustration(
+                scene.visual_description,
+                style,
+                image_path,
+                key_text=scene.key_text,
+                narration=scene.narration,
+            )
 
-        # Animation clip with progressive crossfade
-        log(f"    → Rendering frames...")
-        illus_fallback = phase_paths[-1] if phase_paths else tmp / f"scene_{scene.id}_phase3.png"
-        video_clip = make_scene_clip(
-            illustration_path=illus_fallback,
-            style=style,
-            key_text=scene.key_text,
-            narration=scene.narration,
-            duration=scene.duration,
-            phase_paths=phase_paths,
-        )
+            log(f"    → Rendering frames...")
+            video_clip = make_scene_clip(
+                illustration_path=image_path,
+                style=style,
+                key_text=scene.key_text,
+                narration=scene.narration,
+                duration=scene.duration,
+            )
 
-        scene_clips.append((video_clip, audio_path))
+            scene_clips.append((video_clip, audio_path))
+        except Exception as e:
+            log(f"    ⚠ Scene skipped: {e}")
 
     # ── 3. Compose final video ─────────────────────────────────────────────────
     log(f"\n🎞  Composing final video...")
-    compose_video(scene_clips, output_path, fps=VIDEO_FPS)
+    compose_video(scene_clips, output_path, fps=VIDEO_FPS, style=style)
 
     log(f"\n✅ Done! Video saved to: {output_path}")
     return output_path

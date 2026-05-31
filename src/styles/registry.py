@@ -14,7 +14,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="pen",
         reveal_speed=0.5,
         transition="wipe_left",
-        image_prompt_suffix="flat vector illustration, black outlines, white background, clean whiteboard drawing style, simple shapes",
+        image_prompt_suffix="rich hand-drawn whiteboard illustration with expressive characters, black marker outlines, red emphasis marks, blue technical details, clean white background",
         font_style="sans",
     ),
     "chalkboard_color": StyleConfig(
@@ -29,7 +29,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="chalk",
         reveal_speed=0.45,
         transition="fade",
-        image_prompt_suffix="colorful chalk drawing on dark green chalkboard, vibrant colors, chalk texture, educational illustration",
+        image_prompt_suffix="layered colorful chalk drawing on dark green chalkboard, visible chalk dust texture, expressive teacher-style doodles, warm yellow highlights and blue technical notes",
         font_style="chalk",
     ),
     "chalkboard_white": StyleConfig(
@@ -44,7 +44,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="chalk",
         reveal_speed=0.45,
         transition="fade",
-        image_prompt_suffix="white chalk drawing on black chalkboard, monochrome chalk sketch style, educational",
+        image_prompt_suffix="detailed white chalk drawing on black chalkboard, chalk dust texture, expressive simple characters, arrows, boxed callouts, classroom explainer composition",
         font_style="chalk",
     ),
     "modern_minimal": StyleConfig(
@@ -59,7 +59,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="pen",
         reveal_speed=0.55,
         transition="fade",
-        image_prompt_suffix="minimalist flat icon illustration, clean lines, geometric shapes, modern UI style, white background, blue and purple accent colors",
+        image_prompt_suffix="modern clean explainer illustration, precise black linework, restrained blue and violet accents, expressive tech characters, organized UI-like flow without clutter",
         font_style="sans",
     ),
     "sharpie": StyleConfig(
@@ -74,7 +74,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="marker",
         reveal_speed=0.6,
         transition="wipe_left",
-        image_prompt_suffix="bold black marker illustration, white outlines on dark background, graphic novel style, strong contrast, sharpie marker drawing",
+        image_prompt_suffix="bold sharpie marker illustration on a dark board, thick white and orange outlines, graphic novel contrast, expressive faces, confident hand-lettered callouts",
         font_style="marker",
     ),
     "playful": StyleConfig(
@@ -89,7 +89,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="marker",
         reveal_speed=0.5,
         transition="fade",
-        image_prompt_suffix="fun colorful cartoon illustration, rounded shapes, bright colors, playful children's book style, white background",
+        image_prompt_suffix="fun colorful cartoon explainer, rounded expressive characters, playful props, bright accent colors, thick black outlines, energetic arrows and speech bubbles",
         font_style="marker",
     ),
     "editorial": StyleConfig(
@@ -104,7 +104,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="pen",
         reveal_speed=0.4,
         transition="fade",
-        image_prompt_suffix="editorial illustration, newspaper sketch style, cross-hatching, ink drawing, journalistic illustration",
+        image_prompt_suffix="editorial ink illustration with cross-hatching, expressive people and objects, selective red emphasis, newspaper explainer style, sophisticated but readable composition",
         font_style="sans",
     ),
     "technical": StyleConfig(
@@ -119,7 +119,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="pen",
         reveal_speed=0.4,
         transition="fade",
-        image_prompt_suffix="technical blueprint diagram, glowing blue lines on dark background, engineering schematic style, precise technical drawing",
+        image_prompt_suffix="technical blueprint explainer on dark background, glowing cyan linework, precise system arrows, labeled devices, small expressive robot or computer character, schematic clarity",
         font_style="mono",
     ),
     "illustration": StyleConfig(
@@ -134,7 +134,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="none",
         reveal_speed=0.35,
         transition="fade",
-        image_prompt_suffix="detailed colorful illustration, digital art style, vibrant colors, professional editorial artwork, expressive",
+        image_prompt_suffix="detailed colorful editorial illustration, expressive human characters, clear metaphorical objects, strategic red and green accents, polished hand-drawn linework",
         font_style="sans",
     ),
 
@@ -151,7 +151,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="pen",
         reveal_speed=0.35,
         transition="fade",
-        image_prompt_suffix="classic black and white pen and ink sketch, detailed cross-hatching, engraving style, monochrome illustration, newspaper illustration",
+        image_prompt_suffix="classic black and white pen-and-ink explainer, detailed cross-hatching, expressive characters, arrows and caption boxes, engraved newspaper illustration feel",
         font_style="sans",
     ),
     "classic_color": StyleConfig(
@@ -166,7 +166,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="pen",
         reveal_speed=0.4,
         transition="fade",
-        image_prompt_suffix="colorful classic illustration, vibrant colors, detailed character art, editorial comic style, expressive faces",
+        image_prompt_suffix="colorful classic editorial comic illustration, detailed character art, expressive faces, hand-drawn arrows, selective red and gold emphasis, rich scene detail",
         font_style="sans",
     ),
     "professional_clean": StyleConfig(
@@ -181,7 +181,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="none",
         reveal_speed=0.5,
         transition="fade",
-        image_prompt_suffix="professional clean business illustration, flowchart style, flat icons, corporate presentation style, purple and blue color scheme",
+        image_prompt_suffix="professional clean business explainer, expressive office characters, crisp flow arrows, flat icons with black outlines, structured layout, blue and red emphasis",
         font_style="sans",
     ),
     "infographics": StyleConfig(
@@ -196,7 +196,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="none",
         reveal_speed=0.5,
         transition="wipe_left",
-        image_prompt_suffix="infographic illustration, data visualization style, clean boxes and arrows, professional infographic design, colorful structured layout",
+        image_prompt_suffix="infographic explainer illustration, clean boxes and arrows, small expressive characters, colorful structured layout, charts and callouts that support the story",
         font_style="sans",
     ),
     "dry_erase": StyleConfig(
@@ -211,7 +211,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="marker",
         reveal_speed=0.55,
         transition="wipe_left",
-        image_prompt_suffix="dry erase marker drawing on whiteboard, hand-drawn markers, colorful marker illustration, teaching whiteboard style",
+        image_prompt_suffix="dry erase marker drawing on whiteboard, colorful marker strokes, expressive teaching characters, bold black outlines, red and blue annotations, natural board composition",
         font_style="marker",
     ),
     "creative_color": StyleConfig(
@@ -226,7 +226,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="marker",
         reveal_speed=0.5,
         transition="fade",
-        image_prompt_suffix="creative hand-drawn illustration, mixed typography art, colorful doodle style, sketchbook aesthetic, expressive linework",
+        image_prompt_suffix="creative hand-drawn doodle explainer, expressive linework, mixed visual metaphors, colorful sketchbook accents, characters, arrows, speech bubbles and useful callouts",
         font_style="marker",
     ),
     "crayon_color": StyleConfig(
@@ -241,7 +241,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="crayon",
         reveal_speed=0.45,
         transition="fade",
-        image_prompt_suffix="colorful crayon illustration, warm adventure storybook style, textured crayon marks, painterly exploration theme",
+        image_prompt_suffix="colorful crayon explainer illustration, textured crayon marks, warm storybook characters, simple expressive faces, chunky arrows and friendly visual metaphors",
         font_style="sans",
     ),
     "improved_beta": StyleConfig(
@@ -256,7 +256,7 @@ STYLES: dict[str, StyleConfig] = {
         drawing_effect="none",
         reveal_speed=0.55,
         transition="fade",
-        image_prompt_suffix="modern tech illustration, clean digital art, laptop and technology icons, software product illustration, contemporary UI style",
+        image_prompt_suffix="modern tech explainer illustration, expressive laptop or computer character, clean digital line art, software icons, flow arrows, blue and green accents, contemporary UI clarity",
         font_style="sans",
     ),
 }
