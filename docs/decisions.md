@@ -17,6 +17,8 @@
 - Do not use a final `fill_alpha >= 1.0` branch that reveals the entire foreground in one frame.
 - Black ink/contours should remain contour-driven.
 - Color and light gray fill regions should reveal as scheduled components near their contour timing, at full opacity, without alpha fading or a final image pop.
+- Since source images are currently single-layer raster PNGs, the renderer extracts approximate layers automatically: thin dark marks remain outline/ink, while broad dark connected regions such as hair, black clothes, and device bodies are treated as fill components.
+- This avoids white holes inside dark filled shapes while preserving the drawn-outline feel.
 
 **Default video output language is English.**
 - All future generated videos must be in English unless the user explicitly requests a different output language.

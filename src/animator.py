@@ -182,6 +182,35 @@ def _fill_reveal_schedule(
     return labels, reveal_progress
 
 
+def _dark_fill_mask(illus_rgb: np.ndarray, is_foreground: np.ndarray) -> np.ndarray:
+    """Find broad dark filled shapes, such as hair or black device bodies, separate from thin ink."""
+    brightness = np.mean(illus_rgb, axis=2)
+    dark_mask = (brightness < 115) & is_foreground
+    dark_u8 = dark_mask.astype(np.uint8)
+    label_count, labels, stats, _ = cv2.connectedComponentsWithStats(dark_u8, connectivity=8)
+    distances = cv2.distanceTransform(dark_u8, cv2.DIST_L2, 3)
+
+    fill_mask = np.zeros((_H, _W), dtype=bool)
+    for label in range(1, label_count):
+        area = int(stats[label, cv2.CC_STAT_AREA])
+        width = int(stats[label, cv2.CC_STAT_WIDTH])
+        height = int(stats[label, cv2.CC_STAT_HEIGHT])
+        if area < 140 or width < 8 or height < 8:
+            continue
+
+        component = labels == label
+        box_area = max(1, width * height)
+        density = area / box_area
+        max_radius = float(np.max(distances[component]))
+
+        # Thin outlines/text rarely have an interior radius above 3px. Filled
+        # black shapes do, even when connected to their black outline.
+        if max_radius >= 3.2 or (area >= 900 and density >= 0.18):
+            fill_mask |= component
+
+    return fill_mask
+
+
 def make_scene_clip(
     illustration_path: Path,
     style: StyleConfig,
@@ -228,7 +257,8 @@ def make_scene_clip(
     illus_rgb_f = illus_rgb.astype(np.float32)
     brightness = np.mean(illus_rgb, axis=2)
     ink_pixels = brightness < 95
-    fill_candidate = is_foreground & ~ink_pixels
+    dark_fill = _dark_fill_mask(illus_rgb, is_foreground)
+    fill_candidate = (is_foreground & ~ink_pixels) | dark_fill
     fill_labels, fill_reveal_progress = _fill_reveal_schedule(
         contours,
         cumulative,

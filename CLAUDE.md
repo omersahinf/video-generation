@@ -47,6 +47,7 @@ python src/cli.py --list-styles
 - Do not add amateur-looking title bars or text overlays after image generation. Avoid top-banner text that looks detached from the scene.
 - Do not let image prompts expose hex color codes or palette values; models may draw them. Describe colors in words and forbid palette strips, UI bars, headers, logos, watermarks, and detached banners.
 - Do not reveal the full foreground in a single final animation branch. Keep ink contour-driven and reveal color/light gray fills as full-opacity scheduled components near their contour timing.
+- For single-layer PNG inputs, classify broad dark connected regions such as hair and black device bodies as fill components, not as thin ink. This prevents white holes inside dark filled shapes.
 
 ## Env Vars
 ```
